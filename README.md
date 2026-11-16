@@ -136,3 +136,19 @@ cargo test            # unit tests (reference-range parsing, Jalali helpers)
 An end-to-end smoke script exercised login, patient registration, booking conflicts, queue
 check-in, encounter signing, lab result flags, invoice payments/refunds, reports and RBAC
 denials against a running server.
+
+## Releases
+
+Pushing a tag runs `.github/workflows/release.yml`, which tests the project, builds the
+release server for Linux x86_64, macOS arm64 and Windows x86_64, and publishes a GitHub
+Release:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+Each archive (`clinicos-<tag>-<target>.tar.gz`, or `.zip` on Windows) contains the
+`clinicos` binary, the `web` frontend, migrations, `README.md` and `.env.example`; a
+`SHA256SUMS` file is attached to the release. The same workflow can be started manually
+from the Actions tab with a tag name.
